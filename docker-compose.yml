@@ -1,0 +1,19 @@
+version: "3.8"
+
+services:
+  app:
+    build:
+      context: myapp
+      dockerfile: Dockerfile
+    # ports:
+    #   - "8001:8000"
+
+    environment:
+      - DJANGO_SETTINGS_MODULE=myapp.settings
+
+  nginx:
+    image: nginx:stable-alpine
+    ports:
+      - "8079:8079"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
